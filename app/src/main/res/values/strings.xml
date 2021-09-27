@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CleanArchitectureNoteApp</string>
+    <string name="delete_note">Deletar nota</string>
+    <string name="add_note">Adicionar nota</string>
+    <string name="your_notes">Suas notas</string>
+    <string name="filter">Ordernar</string>
 </resources>
