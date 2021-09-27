@@ -1,4 +1,4 @@
-package com.plcoding.noteapp
+package com.zeracodes.noteapp
 
 import org.junit.Test
 

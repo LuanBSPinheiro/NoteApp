@@ -1,4 +1,4 @@
-package com.plcoding.noteapp.ui.theme
+package com.zeracodes.noteapp.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

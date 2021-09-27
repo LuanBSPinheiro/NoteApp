@@ -1,4 +1,4 @@
-package com.plcoding.noteapp.ui.theme
+package com.zeracodes.noteapp.ui.theme
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
