@@ -20,6 +20,7 @@ import androidx.navigation.NavController
 import com.zeracodes.noteapp.R
 import com.zeracodes.noteapp.feat_note.presentation.notes.components.NoteItem
 import com.zeracodes.noteapp.feat_note.presentation.notes.components.OrderSection
+import com.zeracodes.noteapp.feat_note.presentation.util.Screen
 import kotlinx.coroutines.launch
 
 @ExperimentalAnimationApi
@@ -36,8 +37,7 @@ fun NotesScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-
-
+                    navController.navigate(Screen.AddEditNoteScreen.route)
                 },
                 backgroundColor = MaterialTheme.colors.primary
             ) {
@@ -97,7 +97,10 @@ fun NotesScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable {
-
+                                navController.navigate(
+                                    Screen.AddEditNoteScreen.route +
+                                            "?noteId=${note.id}&noteColor=${note.color}"
+                                )
                             },
                         onDeleteClick = {
                             viewModel.onEvent(NotesEvent.DeleteNote(note))
@@ -105,9 +108,8 @@ fun NotesScreen(
                                 val result = scaffoldState.snackbarHostState.showSnackbar(
                                     message = "Nota deletada",
                                     actionLabel = "Desfazer",
-
-                                )
-                                if(result == SnackbarResult.ActionPerformed) {
+                                    )
+                                if (result == SnackbarResult.ActionPerformed) {
                                     viewModel.onEvent(NotesEvent.RestoreNote)
                                 }
                             }

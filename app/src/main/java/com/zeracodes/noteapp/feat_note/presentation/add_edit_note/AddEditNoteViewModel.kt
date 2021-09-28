@@ -21,14 +21,18 @@ class AddEditNoteViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val _noteTitle = mutableStateOf(NoteTextFieldState(
-        hint = "Seu titulo aqui!"
-    ))
+    private val _noteTitle = mutableStateOf(
+        NoteTextFieldState(
+            hint = "Seu titulo aqui!"
+        )
+    )
     val noteTitle: State<NoteTextFieldState> = _noteTitle
 
-    private val _noteContent = mutableStateOf(NoteTextFieldState(
-        hint = "Digite sua anotação aqui!"
-    ))
+    private val _noteContent = mutableStateOf(
+        NoteTextFieldState(
+            hint = "Digite sua anotação aqui!"
+        )
+    )
     val noteContent: State<NoteTextFieldState> = _noteContent
 
     private val _noteColor = mutableStateOf(Note.noteColors.random().toArgb())
@@ -41,7 +45,7 @@ class AddEditNoteViewModel @Inject constructor(
 
     init {
         savedStateHandle.get<Int>("noteId")?.let { noteId ->
-            if(noteId != -1) {
+            if (noteId != -1) {
                 viewModelScope.launch {
                     noteUseCases.getNote(noteId)?.also { note ->
                         currentNoteId = note.id
@@ -61,7 +65,7 @@ class AddEditNoteViewModel @Inject constructor(
     }
 
     fun onEvent(event: AddEditNoteEvent) {
-        when(event) {
+        when (event) {
             is AddEditNoteEvent.EnteredTitle -> {
                 _noteTitle.value = noteTitle.value.copy(
                     text = event.value
@@ -74,7 +78,7 @@ class AddEditNoteViewModel @Inject constructor(
                 )
             }
         }
-        when(event) {
+        when (event) {
             is AddEditNoteEvent.EnteredContent -> {
                 _noteContent.value = _noteContent.value.copy(
                     text = event.value
@@ -86,7 +90,7 @@ class AddEditNoteViewModel @Inject constructor(
                             _noteContent.value.text.isBlank()
                 )
             }
-            is AddEditNoteEvent.Changecolor -> {
+            is AddEditNoteEvent.ChangeColor -> {
                 _noteColor.value = event.color
             }
             is AddEditNoteEvent.SaveNote -> {
@@ -115,7 +119,7 @@ class AddEditNoteViewModel @Inject constructor(
     }
 
     sealed class UiEvent {
-        data class ShowSnackBar(val message: String): UiEvent()
-        object SaveNote: UiEvent()
+        data class ShowSnackBar(val message: String) : UiEvent()
+        object SaveNote : UiEvent()
     }
 }
