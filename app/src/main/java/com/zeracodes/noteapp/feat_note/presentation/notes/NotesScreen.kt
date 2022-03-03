@@ -108,7 +108,7 @@ fun NotesScreen(
                                 val result = scaffoldState.snackbarHostState.showSnackbar(
                                     message = "Nota deletada",
                                     actionLabel = "Desfazer",
-                                    )
+                                )
                                 if (result == SnackbarResult.ActionPerformed) {
                                     viewModel.onEvent(NotesEvent.RestoreNote)
                                 }
